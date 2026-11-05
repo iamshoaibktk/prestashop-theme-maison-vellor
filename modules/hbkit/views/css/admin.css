@@ -304,3 +304,13 @@
 .hbbo .k-dialog { display: flex; flex-direction: column; overflow: hidden; }
 .hbbo .k-dialog__body { flex: 1; min-height: 0; overflow: auto; }
 .hbbo .k-dialog--wide .hbbo-choice__pic svg { max-height: 96px; }
+
+/* Author bar (top of every Theme Kit page) */
+.hbbo .hbbo-author { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 16px; padding: 10px 16px; border: 1px solid var(--hbbo-line); border-radius: 12px; background: #fff; }
+.hbbo .hbbo-author__img { flex: none; width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.hbbo .hbbo-author__text { flex: 1 1 220px; min-width: 0; }
+.hbbo .hbbo-author__name { margin: 0; color: var(--hbbo-ink); font-size: 14px; }
+.hbbo .hbbo-author__star { color: #f59e0b; }
+.hbbo .hbbo-author__help { margin: 2px 0 0; color: var(--hbbo-muted); font-size: 13px; }
+.hbbo .hbbo-author__links { display: flex; flex-wrap: wrap; gap: 6px; }
+.hbbo .hbbo-author__links .material-icons { font-size: 16px; }

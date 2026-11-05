@@ -110,6 +110,7 @@ class AdminHbkitController extends ModuleAdminController
             'hbk_id_lang' => (int) Configuration::get('PS_LANG_DEFAULT'),
             'hbk_token' => Tools::getAdminTokenLite('AdminHbkit'),
             'hbk_demo' => (string) Configuration::get('HBKIT_DEMO'),
+            'hbk_author_img' => $this->module->getPathUri() . 'views/img/author.jpg',
         ]);
         $method = 'view' . ucfirst(preg_replace('/[^a-z]/', '', $view));
         $body = method_exists($this, $method) ? $this->$method() : $this->viewSections();

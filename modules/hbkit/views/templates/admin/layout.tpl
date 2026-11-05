@@ -3,6 +3,8 @@
  * @author iamshoaibktk@gmail.com  @license AFL-3.0
  *}
 <div class="hbbo">
+  {include file='./author.tpl'}
+
   <div class="hbbo-head">
     <div>
       <h1 class="hbbo-head__title">{l s='Theme Kit' d='Modules.Hbkit.Admin'}{if $hbk_demo} <span class="hbbo-head__demo">{$hbk_demo|escape:'html':'UTF-8'}</span>{/if}</h1>

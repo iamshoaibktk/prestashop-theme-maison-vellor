@@ -5378,6 +5378,61 @@
       "nl-NL": "Alleen boven aan de pagina.",
       "pt-PT": "Apenas no topo da página.",
       "ru-RU": "Только вверху страницы."
+    },
+    "Top Rated on Fiverr": {
+      "fr-FR": "Top Rated sur Fiverr",
+      "es-ES": "Top Rated en Fiverr",
+      "it-IT": "Top Rated su Fiverr",
+      "pl-PL": "Top Rated na Fiverr",
+      "de-DE": "Top Rated auf Fiverr",
+      "cs-CZ": "Top Rated na Fiverru",
+      "nl-NL": "Top Rated op Fiverr",
+      "pt-PT": "Top Rated no Fiverr",
+      "ru-RU": "Top Rated на Fiverr"
+    },
+    "Hire me on Fiverr": {
+      "fr-FR": "Me contacter sur Fiverr",
+      "es-ES": "Contráteme en Fiverr",
+      "it-IT": "Assumimi su Fiverr",
+      "pl-PL": "Zatrudnij mnie na Fiverr",
+      "de-DE": "Auf Fiverr beauftragen",
+      "cs-CZ": "Najměte mě na Fiverru",
+      "nl-NL": "Huur mij in op Fiverr",
+      "pt-PT": "Contrate-me no Fiverr",
+      "ru-RU": "Нанять на Fiverr"
+    },
+    "WhatsApp": {
+      "fr-FR": "WhatsApp",
+      "es-ES": "WhatsApp",
+      "it-IT": "WhatsApp",
+      "pl-PL": "WhatsApp",
+      "de-DE": "WhatsApp",
+      "cs-CZ": "WhatsApp",
+      "nl-NL": "WhatsApp",
+      "pt-PT": "WhatsApp",
+      "ru-RU": "WhatsApp"
+    },
+    "Email": {
+      "fr-FR": "E-mail",
+      "es-ES": "Correo",
+      "it-IT": "E-mail",
+      "pl-PL": "E-mail",
+      "de-DE": "E-Mail",
+      "cs-CZ": "E-mail",
+      "nl-NL": "E-mail",
+      "pt-PT": "E-mail",
+      "ru-RU": "Эл. почта"
+    },
+    "Need help with this theme, or a custom feature for your store? I reply quickly.": {
+      "fr-FR": "Besoin d'aide avec ce thème ou d'une fonctionnalité sur mesure pour votre boutique ? Je réponds rapidement.",
+      "es-ES": "¿Necesitas ayuda con este tema o una función a medida para tu tienda? Respondo rápido.",
+      "it-IT": "Ti serve aiuto con questo tema o una funzione su misura per il tuo negozio? Rispondo in fretta.",
+      "pl-PL": "Potrzebujesz pomocy z tym motywem lub funkcji na zamówienie dla sklepu? Odpowiadam szybko.",
+      "de-DE": "Brauchen Sie Hilfe mit diesem Theme oder eine individuelle Funktion für Ihren Shop? Ich antworte schnell.",
+      "cs-CZ": "Potřebujete pomoc s touto šablonou nebo funkci na míru pro váš obchod? Odpovídám rychle.",
+      "nl-NL": "Hulp nodig met dit thema of een functie op maat voor je winkel? Ik reageer snel.",
+      "pt-PT": "Precisa de ajuda com este tema ou de uma funcionalidade à medida para a sua loja? Respondo rapidamente.",
+      "ru-RU": "Нужна помощь с этой темой или своя функция для магазина? Отвечаю быстро."
     }
   },
   "Shop": {
