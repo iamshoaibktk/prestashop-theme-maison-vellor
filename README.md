@@ -18,7 +18,7 @@ Maison Vellor is a free PrestaShop 9 theme for women's fashion boutiques and clo
 - **Search panel** with live results, popular searches and categories.
 - **Size buttons** above the product grid and a **size guide** link next to the sizes on the product page.
 - **Child theme of Hummingbird** (`parent: hummingbird`). No parent templates are copied, so Hummingbird and PrestaShop updates keep working.
-- **Hummingbird Theme Kit module** (`hbkit` v1.1.0): colours, fonts, corners, header and footer style as CSS variables, a top bar, and a homepage builder (banners, categories, gallery, hero, image text, products).
+- **Hummingbird Theme Kit module** (`hbkit` v1.1.1): colours, fonts, corners, header and footer style as CSS variables, a top bar, and a homepage builder (banners, categories, gallery, hero, image text, products).
 - **Page layouts you can switch in the back office**: side cart, cart page, category pages, product page and product cards, each with several picture-chosen styles. This demo uses: side cart that slides in; ruled cart page with framed summary; full-width grid with a filter button; standard category header; large-gallery product page; details in an accordion; 4 products per row; label product cards.
 - **One-click demo import**: 24 products with sizes/colours and features, 6 categories, brands, 8 CMS pages, main menu, footer links, reassurance blocks and 6 homepage sections.
 - **10 languages** for everything: English, French, Spanish, Italian, Polish, German, Czech, Dutch, Portuguese, Russian.
@@ -31,9 +31,9 @@ Maison Vellor is a free PrestaShop 9 theme for women's fashion boutiques and clo
 
 ## Installation
 
-1. Download the release files: `maison-vellor-theme-v1.0.0.zip` and `hbkit-v1.1.0.zip`.
-2. **Modules > Module Manager > Upload a module**: upload `hbkit-v1.1.0.zip`.
-3. **Design > Theme & Logo > Add new theme**: upload `maison-vellor-theme-v1.0.0.zip`, then click *Use this theme*.
+1. Download the release files: `maison-vellor-theme-v1.0.1.zip` and `hbkit-v1.1.1.zip`.
+2. **Modules > Module Manager > Upload a module**: upload `hbkit-v1.1.1.zip`.
+3. **Design > Theme & Logo > Add new theme**: upload `maison-vellor-theme-v1.0.1.zip`, then click *Use this theme*.
 4. **Design > Theme Kit > Demo import**: pick *Maison Vellor*, type `IMPORT` and click *Import this demo*.
    On a fresh shop keep *Remove existing content first* checked. Orders and customers are never touched.
 5. Adjust colours, fonts and page layouts in **Theme Kit > Design**, and every homepage section in **Theme Kit > Homepage sections**.
@@ -83,6 +83,8 @@ Academic Free License 3.0 (AFL-3.0), see [LICENSE.md](LICENSE.md).
 - [Northline Outfitters](https://github.com/iamshoaibktk/prestashop-theme-northline-outfitters): free PrestaShop 9 theme for outdoor clothing stores
 - [Little Sprout](https://github.com/iamshoaibktk/prestashop-theme-little-sprout): free PrestaShop 9 theme for baby and kids' clothing stores
 - [Stride Atelier](https://github.com/iamshoaibktk/prestashop-theme-stride-atelier): free PrestaShop 9 theme for shoe and sneaker stores
+- [Kestrel Leather](https://github.com/iamshoaibktk/prestashop-theme-kestrel-leather): free PrestaShop 9 theme for leather goods and bag stores
+- [Aurelle Jewels](https://github.com/iamshoaibktk/prestashop-theme-aurelle-jewels): free PrestaShop 9 theme for jewellery and ring stores
 
 ## Author & support
 

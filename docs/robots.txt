@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iamshoaibktk.github.io/prestashop-theme-maison-vellor/sitemap.xml
