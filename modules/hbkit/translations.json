@@ -6040,6 +6040,28 @@
    "nl-NL": "Twijfel je? Meet de lengte.",
    "pt-PT": "Não tem a certeza? Meça a altura.",
    "ru-RU": "Не уверены? Измерьте рост."
+  },
+  "What it is made of": {
+   "fr-FR": "De quoi elle est faite",
+   "es-ES": "De qué está hecho",
+   "it-IT": "Di cosa è fatto",
+   "pl-PL": "Z czego jest zrobiony",
+   "de-DE": "Woraus er besteht",
+   "cs-CZ": "Z čeho je vyrobený",
+   "nl-NL": "Waar hij van gemaakt is",
+   "pt-PT": "De que é feito",
+   "ru-RU": "Из чего сделано"
+  },
+  "Resolable in our workshop": {
+   "fr-FR": "Ressemelable dans notre atelier",
+   "es-ES": "Se cambia la suela en nuestro taller",
+   "it-IT": "Risuolabile nel nostro laboratorio",
+   "pl-PL": "Wymiana podeszwy w naszej pracowni",
+   "de-DE": "In unserer Werkstatt neu besohlbar",
+   "cs-CZ": "Podrazitelné v naší dílně",
+   "nl-NL": "Te verzolen in onze werkplaats",
+   "pt-PT": "Sola trocável na nossa oficina",
+   "ru-RU": "Замена подошвы в нашей мастерской"
   }
  }
 }

@@ -214,6 +214,14 @@
         <source>Not sure? Measure their height.</source>
         <target>Não tem a certeza? Meça a altura.</target>
       </trans-unit>
+      <trans-unit id="03bc8fce096dbe5c8909d474780ff1ed">
+        <source>What it is made of</source>
+        <target>De que é feito</target>
+      </trans-unit>
+      <trans-unit id="f726b94859d424e6c1255e4713896d97">
+        <source>Resolable in our workshop</source>
+        <target>Sola trocável na nossa oficina</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -849,7 +849,7 @@ class HbkitImporter
         // Kit settings that point at features, groups, pages or texts of a demo: clear them first, so a value
         // from a demo imported before (for example a feature id that no longer exists) does not remain.
         $keys = ['HBKIT_CARD_FEATURE', 'HBKIT_PRODUCT_FEATURES', 'HBKIT_FEATURES_NAMED', 'HBKIT_QUICK_FACET', 'HBKIT_QUICK_FEATURE',
-            'HBKIT_SIZE_GUIDE', 'HBKIT_SCALE_FEATURE', 'HBKIT_SCALE_RANGE', 'HBKIT_NEXT_CATEGORY'];
+            'HBKIT_SIZE_GUIDE', 'HBKIT_SCALE_FEATURE', 'HBKIT_SCALE_RANGE', 'HBKIT_NEXT_CATEGORY', 'HBKIT_FIT_FEATURE', 'HBKIT_STAMP_FEATURE'];
         foreach ($keys as $key) {
             Configuration::updateValue($key, '');
         }

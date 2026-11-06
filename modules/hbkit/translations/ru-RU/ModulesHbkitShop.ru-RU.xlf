@@ -214,6 +214,14 @@
         <source>Not sure? Measure their height.</source>
         <target>Не уверены? Измерьте рост.</target>
       </trans-unit>
+      <trans-unit id="03bc8fce096dbe5c8909d474780ff1ed">
+        <source>What it is made of</source>
+        <target>Из чего сделано</target>
+      </trans-unit>
+      <trans-unit id="f726b94859d424e6c1255e4713896d97">
+        <source>Resolable in our workshop</source>
+        <target>Замена подошвы в нашей мастерской</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

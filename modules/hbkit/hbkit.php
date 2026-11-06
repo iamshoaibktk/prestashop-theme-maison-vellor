@@ -179,7 +179,7 @@ class Hbkit extends Module
         foreach (['hbkit_item_lang', 'hbkit_item', 'hbkit_section_lang', 'hbkit_section'] as $table) {
             $db->execute('DROP TABLE IF EXISTS `' . _DB_PREFIX_ . $table . '`');
         }
-        foreach (['HBKIT_TOKENS', 'HBKIT_TOPBAR_ACTIVE', 'HBKIT_TOPBAR_TEXT', 'HBKIT_TOPBAR_LINK', 'HBKIT_DEMO', 'HBKIT_CARD_FEATURE', 'HBKIT_PRODUCT_FEATURES', 'HBKIT_FEATURES_NAMED', 'HBKIT_QUICK_FACET', 'HBKIT_QUICK_FEATURE', 'HBKIT_SIZE_GUIDE', 'HBKIT_SCALE_FEATURE', 'HBKIT_SCALE_RANGE', 'HBKIT_NEXT_CATEGORY'] as $key) {
+        foreach (['HBKIT_TOKENS', 'HBKIT_TOPBAR_ACTIVE', 'HBKIT_TOPBAR_TEXT', 'HBKIT_TOPBAR_LINK', 'HBKIT_DEMO', 'HBKIT_CARD_FEATURE', 'HBKIT_PRODUCT_FEATURES', 'HBKIT_FEATURES_NAMED', 'HBKIT_QUICK_FACET', 'HBKIT_QUICK_FEATURE', 'HBKIT_SIZE_GUIDE', 'HBKIT_SCALE_FEATURE', 'HBKIT_SCALE_RANGE', 'HBKIT_NEXT_CATEGORY', 'HBKIT_FIT_FEATURE', 'HBKIT_STAMP_FEATURE'] as $key) {
             Configuration::deleteByName($key);
         }
         foreach (array_keys(self::TEXT_KEYS) as $key) {
@@ -380,7 +380,8 @@ class Hbkit extends Module
             $params['templateVars']['page']['body_classes']['hbk'] = true;
         }
 
-        return ['tokens' => $t, 'demo' => (string) Configuration::get('HBKIT_DEMO'), 'texts' => $this->getTexts(), 'size_guide' => $this->sizeGuide()];
+        return ['tokens' => $t, 'demo' => (string) Configuration::get('HBKIT_DEMO'), 'texts' => $this->getTexts(), 'size_guide' => $this->sizeGuide(),
+            'fit' => $this->fitScale(), 'stamp_feature' => (int) Configuration::get('HBKIT_STAMP_FEATURE')];
     }
 
     public function hookDisplayBanner()
@@ -425,6 +426,26 @@ class Hbkit extends Module
     }
 
     /** id_feature list from a "3,5,7" setting. */
+    /**
+     * A fit feature for product templates (HBKIT_FIT_FEATURE): its id and each value's step,
+     * in the order the values were created (for example runs small, true to size, runs large).
+     */
+    private function fitScale(): array
+    {
+        $id = (int) Configuration::get('HBKIT_FIT_FEATURE');
+        if (!$id) {
+            return ['feature' => 0, 'steps' => [], 'count' => 0];
+        }
+        $rows = Db::getInstance()->executeS('SELECT id_feature_value FROM `' . _DB_PREFIX_ . 'feature_value`
+            WHERE id_feature = ' . $id . ' AND custom = 0 ORDER BY id_feature_value') ?: [];
+        $steps = [];
+        foreach ($rows as $i => $r) {
+            $steps[(int) $r['id_feature_value']] = $i + 1;
+        }
+
+        return ['feature' => $id, 'steps' => $steps, 'count' => count($steps)];
+    }
+
     private static function featureIds(string $key): array
     {
         return array_values(array_filter(array_map('intval', explode(',', (string) Configuration::get($key)))));
