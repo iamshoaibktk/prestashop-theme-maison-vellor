@@ -159,6 +159,9 @@ class HbkitImporter
         }
         [$kind, $key] = explode(':', $spec, 2);
         $map = ['category' => 'category', 'product' => 'product', 'cms' => 'cms', 'brand' => 'brand', 'manufacturer' => 'brand'];
+        if ($kind === 'attribute') {
+            return 'attribute:' . (int) ($this->ids['attribute'][$key] ?? (ctype_digit($key) ? $key : 0));
+        }
         if (isset($map[$kind])) {
             $id = $this->id($map[$kind], $key);
 
@@ -356,6 +359,10 @@ class HbkitImporter
             copy($file, _PS_IMG_DIR_ . 'favicon.ico');
             Configuration::updateValue('PS_FAVICON', 'favicon.ico');
         }
+        // Only the networks this demo lists: clear the ones a previous demo set.
+        foreach (['FACEBOOK', 'TWITTER', 'RSS', 'YOUTUBE', 'PINTEREST', 'VIMEO', 'INSTAGRAM', 'LINKEDIN', 'TIKTOK', 'DISCORD'] as $network) {
+            Configuration::updateValue('BLOCKSOCIAL_' . $network, '');
+        }
         foreach ($s['social'] ?? [] as $network => $url) {
             Configuration::updateValue('BLOCKSOCIAL_' . strtoupper($network), (string) $url);
         }
@@ -500,9 +507,13 @@ class HbkitImporter
             $product->available_for_order = 1;
             $product->weight = (float) ($p['weight'] ?? 0.5);
             $product->state = Product::STATE_SAVED;
-            $product->date_add = date('Y-m-d H:i:s', !empty($p['new']) ? $now - ($i * 3600) : $now - (60 + $i) * 86400);
+            $dateAdd = date('Y-m-d H:i:s', !empty($p['new']) ? $now - ($i * 3600) : $now - (60 + $i) * 86400);
             $this->save($product);
             $id = (int) $product->id;
+            // add() sets date_add to now, which would make every product "New": write the intended date afterwards.
+            foreach (['product', 'product_shop'] as $table) {
+                Db::getInstance()->update($table, ['date_add' => pSQL($dateAdd)], 'id_product = ' . $id);
+            }
             $this->ids['product'][$p['key']] = $id;
 
             $product->addToCategories(array_unique(array_merge($categories, $this->demo['catalog']['also_in_home'] ?? true ? [(int) Configuration::get('PS_HOME_CATEGORY')] : [])));

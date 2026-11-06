@@ -65,7 +65,7 @@ class HbkitTypes
             ],
             'banners' => [
                 'label' => 'Banners',
-                'settings' => ['layout' => ['select', ['2', '3', '1', '2-1', '1-2', '4']], 'style' => ['select', ['overlay', 'below']], 'height' => ['select', ['m', 's', 'l']]],
+                'settings' => ['layout' => ['select', ['2', '3', '1', '2-1', '1-2', '4']], 'style' => ['select', ['overlay', 'below', 'ruler']], 'height' => ['select', ['m', 's', 'l']]],
                 'item' => ['image' => ['image'], 'link' => ['link'], 'align' => ['select', ['left', 'center', 'right']], 'tone' => ['select', ['light', 'dark']]],
                 'item_lang' => ['subtitle', 'title', 'text', 'button', 'url'],
             ],

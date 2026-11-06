@@ -317,8 +317,16 @@ class AdminHbkitController extends ModuleAdminController
             $brands[(int) $m['id_manufacturer']] = $m['name'];
         }
 
+        $attrs = [];
+        foreach (AttributeGroup::getAttributesGroups($idLang) as $g) {
+            foreach (AttributeGroup::getAttributes($idLang, (int) $g['id_attribute_group']) as $a) {
+                $attrs[(int) $a['id_attribute']] = $g['public_name'] . ': ' . $a['name'];
+            }
+        }
+
         return [
             'category' => $this->categoryOptions(),
+            'attribute' => $attrs,
             'cms' => $cms,
             'product' => $products,
             'manufacturer' => $brands,
@@ -329,6 +337,7 @@ class AdminHbkitController extends ModuleAdminController
             'types' => [
                 '' => $this->t('Nowhere'), 'category' => $this->t('Category'), 'cms' => $this->t('Page'), 'product' => $this->t('Product'),
                 'manufacturer' => $this->t('Brand'), 'page' => $this->t('Shop page'),
+                'attribute' => $this->t('Products in one size or colour'),
             ],
         ];
     }

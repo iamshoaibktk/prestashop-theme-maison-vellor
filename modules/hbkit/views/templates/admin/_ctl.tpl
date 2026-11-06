@@ -50,7 +50,7 @@
       <div class="k-picker js-k-link">
         <input type="hidden" name="{$name}" value="{$value|escape:'html':'UTF-8'}" class="js-k-link-value">
         <select class="k-sel js-k-link-kind" id="{$id}" aria-label="{l s='Link type' d='Modules.Hbkit.Admin'}">{foreach $hbk_lists.types as $k => $lab}<option value="{$k}">{$lab}</option>{/foreach}</select>
-        {foreach ['category', 'cms', 'product', 'manufacturer', 'page'] as $k}
+        {foreach ['category', 'cms', 'product', 'manufacturer', 'page', 'attribute'] as $k}
           <select class="k-sel js-k-link-target" data-kind="{$k}" aria-label="{$hbk_lists.types[$k]}" hidden>
             {foreach $hbk_lists[$k] as $tid => $tname}<option value="{$tid}">{$tname}</option>{/foreach}
           </select>

@@ -210,6 +210,10 @@
         <source>Sold out</source>
         <target>Wyprzedane</target>
       </trans-unit>
+      <trans-unit id="1da3df79f8e0f787916269f4654becf2">
+        <source>Not sure? Measure their height.</source>
+        <target>Nie wiesz? Zmierz wzrost dziecka.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

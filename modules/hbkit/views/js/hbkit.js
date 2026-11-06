@@ -384,6 +384,8 @@
       if (!pending || !ev || !ev.reason || ev.reason.linkAction !== 'add-to-cart') return;
       var p = pending; pending = null;
       setState(p.btn, 'added');
+      // The side cart opens by itself: no photo flying to the header then.
+      if (F.drawer) { if (p.done) p.done(); return; }
       // A header that slid away while scrolling comes back so the photo can fly to the cart.
       var h = document.getElementById('header'), away = h && h.classList.contains('hbk-header-away');
       if (away) h.classList.remove('hbk-header-away');
@@ -400,6 +402,26 @@
     if (!F.options_url) return;
     var cache = {};
     function close(card) { var q = card.querySelector('.hbk-qa'); if (q) q.remove(); card.classList.remove('has-qa'); }
+    var loading = {};
+    function load(id) {
+      if (cache[id]) return Promise.resolve(cache[id]);
+      if (!loading[id]) {
+        loading[id] = fetch(F.options_url + (F.options_url.indexOf('?') < 0 ? '?' : '&') + 'id_product=' + encodeURIComponent(id), { credentials: 'same-origin', headers: { Accept: 'application/json' } })
+          .then(function (r) { return r.json(); })
+          .then(function (d) { cache[id] = d; return d; })
+          .finally(function () { delete loading[id]; });
+      }
+      return loading[id];
+    }
+    // Load a card's sizes when the pointer or keyboard reaches its button, so the panel opens at once.
+    function prefetch(e) {
+      var btn = e.target.closest && e.target.closest('.product-miniature [data-button-action="add-to-cart"]');
+      var card = btn && btn.closest('.product-miniature');
+      var ipa = card && card.getAttribute('data-id-product-attribute');
+      if (ipa && ipa !== '0') load(card.getAttribute('data-id-product')).catch(function () {});
+    }
+    document.addEventListener('pointerover', prefetch);
+    document.addEventListener('focusin', prefetch);
     function go(btn, ipa) {
       var form = btn.closest('form');
       var input = form && form.querySelector('input[name="id_product_attribute"]');
@@ -408,7 +430,8 @@
       btn.click();
     }
     function panel(card, btn, group) {
-      close(card);
+      // One size panel at a time.
+      document.querySelectorAll('.product-miniature.has-qa').forEach(close);
       var L = F.labels || {};
       var box = document.createElement('div');
       box.className = 'hbk-qa';
@@ -443,6 +466,8 @@
       e.preventDefault();
       e.stopImmediatePropagation();
       if (card.classList.contains('has-qa')) { close(card); return; }
+      // One size panel at a time, closed at once (not when the next one has loaded).
+      document.querySelectorAll('.product-miniature.has-qa').forEach(close);
       var id = card.getAttribute('data-id-product');
       var use = function (d) {
         if (!d || !d.ok) { window.location.href = (card.querySelector('a') || {}).href || '#'; return; }
@@ -450,11 +475,11 @@
         else go(btn, d.group && d.group.values[0] ? d.group.values[0].ipa : d.default);
       };
       if (cache[id]) { use(cache[id]); return; }
-      setState(btn, 'loading');
-      fetch(F.options_url + (F.options_url.indexOf('?') < 0 ? '?' : '&') + 'id_product=' + encodeURIComponent(id), { credentials: 'same-origin', headers: { Accept: 'application/json' } })
-        .then(function (r) { return r.json(); })
-        .then(function (d) { setState(btn, null); cache[id] = d; use(d); })
-        .catch(function () { setState(btn, null); window.location.href = (card.querySelector('a') || {}).href || '#'; });
+      // Usually already loaded on hover; show the spinner only when the wait is noticeable.
+      var slow = window.setTimeout(function () { setState(btn, 'loading'); }, 150);
+      load(id)
+        .then(function (d) { window.clearTimeout(slow); setState(btn, null); use(d); })
+        .catch(function () { window.clearTimeout(slow); setState(btn, null); window.location.href = (card.querySelector('a') || {}).href || '#'; });
     }, true);
     document.addEventListener('click', function (e) {
       document.querySelectorAll('.product-miniature.has-qa').forEach(function (card) { if (!card.contains(e.target)) close(card); });
@@ -530,6 +555,12 @@
         a.href = F.size_guide.url;
         a.textContent = F.size_guide.label;
         lg.parentNode.insertBefore(a, lg.nextSibling);
+        if (F.size_hint) {
+          var p = document.createElement('p');
+          p.className = 'hbk-sizehint';
+          p.textContent = F.size_hint;
+          (lg.closest('.product-variant') || lg.parentNode).appendChild(p);
+        }
       });
     }
     add();
@@ -607,6 +638,25 @@
     });
   }
 
+  // "Add to bag" instead of "Add to cart" when the shop says bag (token cart_word).
+  function bagWord() {
+    var L = F.labels || {};
+    if (!L.add) return;
+    function apply() {
+      document.querySelectorAll('[data-button-action="add-to-cart"]').forEach(function (b) {
+        var nodes = Array.prototype.filter.call(b.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+        if (nodes.length) nodes[nodes.length - 1].textContent = ' ' + L.add + ' ';
+        b.querySelectorAll('.product-miniature__add-text').forEach(function (t) { t.textContent = L.add; });
+      });
+    }
+    apply();
+    if (window.prestashop && prestashop.on) {
+      prestashop.on('updatedProduct', function () { window.setTimeout(apply, 0); });
+      prestashop.on('updateProductList', function () { window.setTimeout(apply, 50); });
+    }
+    document.addEventListener('shown.bs.modal', function () { window.setTimeout(apply, 0); });
+  }
+
   function init() {
     document.querySelectorAll('.js-hbk-slider').forEach(slider);
     document.querySelectorAll('.hbk-products').forEach(tabs);
@@ -623,6 +673,7 @@
     sizeGuide();
     quickFacet();
     cartBar();
+    bagWord();
   }
 
   if (document.readyState === 'loading') {

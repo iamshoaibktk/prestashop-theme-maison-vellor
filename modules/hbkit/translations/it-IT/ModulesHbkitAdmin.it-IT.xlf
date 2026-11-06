@@ -1978,6 +1978,14 @@
         <source>Need help with this theme, or a custom feature for your store? I reply quickly.</source>
         <target>Ti serve aiuto con questo tema o una funzione su misura per il tuo negozio? Rispondo in fretta.</target>
       </trans-unit>
+      <trans-unit id="bb493aa188e4464c49cebe4b58fdc934">
+        <source>Size ruler, no photos</source>
+        <target>Righello delle taglie, senza foto</target>
+      </trans-unit>
+      <trans-unit id="b77ce6e8c44bbe48dcad639630f4c57e">
+        <source>Products in one size or colour</source>
+        <target>Prodotti di una taglia o colore</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

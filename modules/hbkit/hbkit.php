@@ -103,6 +103,7 @@ class Hbkit extends Module
         'HBKIT_TXT_SEARCH_PLACEHOLDER' => 'search_placeholder',
         'HBKIT_TXT_SEARCH_POPULAR' => 'search_popular',
         'HBKIT_TXT_NEXT_CATEGORY' => 'next_category',
+        'HBKIT_TXT_SIZE_HINT' => 'size_hint',
     ];
 
     public function __construct()
@@ -462,8 +463,16 @@ class Hbkit extends Module
     {
         $html = '';
         $note = (string) Configuration::get('HBKIT_TXT_PRODUCT_NOTE', (int) $this->context->language->id);
-        if ($note !== '') {
-            $html .= '<p class="hbk-pnote">' . htmlspecialchars($note, ENT_QUOTES, 'UTF-8') . '</p>';
+        // Several lines separated by "|" become a short list (for example delivery, then returns).
+        $lines = array_values(array_filter(array_map('trim', explode('|', $note)), 'strlen'));
+        if (count($lines) > 1) {
+            $html .= '<ul class="hbk-pnote hbk-pnote--list">';
+            foreach ($lines as $line) {
+                $html .= '<li>' . htmlspecialchars($line, ENT_QUOTES, 'UTF-8') . '</li>';
+            }
+            $html .= '</ul>';
+        } elseif ($lines) {
+            $html .= '<p class="hbk-pnote">' . htmlspecialchars($lines[0], ENT_QUOTES, 'UTF-8') . '</p>';
         }
         $ids = self::featureIds('HBKIT_PRODUCT_FEATURES');
         $idProduct = self::productId($params['product'] ?? null);
@@ -556,6 +565,7 @@ class Hbkit extends Module
             ] : null,
             'size_guide' => $this->sizeGuide(),
             'size_name' => $this->quickFacetName(),
+            'size_hint' => (string) Configuration::get('HBKIT_TXT_SIZE_HINT', (int) $this->context->language->id),
             'quick_facet' => $this->quickFacet(),
             'labels' => [
                 'subtotal' => $this->trans('Subtotal', [], 'Modules.Hbkit.Shop'),
@@ -564,6 +574,7 @@ class Hbkit extends Module
                 'added' => $this->trans('Added to your cart', [], 'Modules.Hbkit.Shop'),
                 'empty' => $this->trans('Your cart is empty', [], 'Modules.Hbkit.Shop'),
                 'soldout' => $this->trans('Sold out', [], 'Modules.Hbkit.Shop'),
+                'add' => $t['cart_word'] === 'bag' ? $this->trans('Add to bag', [], 'Modules.Hbkit.Shop') : '',
             ],
         ];
     }

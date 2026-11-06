@@ -210,6 +210,10 @@
         <source>Sold out</source>
         <target>Нет в наличии</target>
       </trans-unit>
+      <trans-unit id="1da3df79f8e0f787916269f4654becf2">
+        <source>Not sure? Measure their height.</source>
+        <target>Не уверены? Измерьте рост.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

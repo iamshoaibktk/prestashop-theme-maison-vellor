@@ -148,7 +148,7 @@
       </trans-unit>
       <trans-unit id="3c81b1b353b05c4084a52b728fce0d74">
         <source>Fabric and care</source>
-        <target>Material und Pflege</target>
+        <target>Stoff und Pflege</target>
       </trans-unit>
       <trans-unit id="d7778d0c64b6ba21494c97f77a66885a">
         <source>Filter</source>
@@ -209,6 +209,10 @@
       <trans-unit id="679db092832473607ad10034a636ac90">
         <source>Sold out</source>
         <target>Ausverkauft</target>
+      </trans-unit>
+      <trans-unit id="1da3df79f8e0f787916269f4654becf2">
+        <source>Not sure? Measure their height.</source>
+        <target>Unsicher? Messen Sie die Körpergröße.</target>
       </trans-unit>
     </body>
   </file>

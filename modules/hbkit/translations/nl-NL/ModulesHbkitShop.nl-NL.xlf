@@ -148,7 +148,7 @@
       </trans-unit>
       <trans-unit id="3c81b1b353b05c4084a52b728fce0d74">
         <source>Fabric and care</source>
-        <target>Stof en onderhoud</target>
+        <target>Stof en verzorging</target>
       </trans-unit>
       <trans-unit id="d7778d0c64b6ba21494c97f77a66885a">
         <source>Filter</source>
@@ -209,6 +209,10 @@
       <trans-unit id="679db092832473607ad10034a636ac90">
         <source>Sold out</source>
         <target>Uitverkocht</target>
+      </trans-unit>
+      <trans-unit id="1da3df79f8e0f787916269f4654becf2">
+        <source>Not sure? Measure their height.</source>
+        <target>Twijfel je? Meet de lengte.</target>
       </trans-unit>
     </body>
   </file>

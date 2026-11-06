@@ -121,7 +121,7 @@ class HbkitForm
                     '1' => $t('One wide banner'), '2' => $t('Two side by side'), '3' => $t('Three side by side'), '4' => $t('Four side by side'),
                     '2-1' => $t('Large and small'), '1-2' => $t('Small and large'),
                 ]];
-                $layout[] = $this->seg('style', $t('Text'), ['overlay' => $t('On the photo'), 'below' => $t('Below the photo')]);
+                $layout[] = $this->seg('style', $t('Text'), ['overlay' => $t('On the photo'), 'below' => $t('Below the photo'), 'ruler' => $t('Size ruler, no photos')]);
                 $layout[] = $this->seg('height', $t('Height'), $this->sizes());
                 break;
             case 'image_text':

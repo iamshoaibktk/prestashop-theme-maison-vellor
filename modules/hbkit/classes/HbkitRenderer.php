@@ -129,10 +129,32 @@ class HbkitRenderer
                     return $id ? $link->getManufacturerLink($id, null, $this->idLang) : '';
                 case 'page':
                     return $link->getPageLink(preg_replace('/[^a-z0-9_-]/i', '', $value), null, $this->idLang);
+                case 'attribute':
+                    return $id ? $this->filterLink($id) : '';
             }
         }
 
         return $fallbackUrl;
+    }
+
+    /**
+     * The whole shop filtered to one size or colour (ps_facetedsearch "?q=Group-Value"),
+     * for example the age stops of a size ruler.
+     */
+    private function filterLink(int $idAttribute): string
+    {
+        $attr = new ProductAttribute($idAttribute, $this->idLang);
+        if (!Validate::isLoadedObject($attr)) {
+            return '';
+        }
+        $group = new AttributeGroup((int) $attr->id_attribute_group, $this->idLang);
+        $esc = function ($v) {
+            return str_replace(['-', '/'], ['\\-', '\\/'], (string) $v);
+        };
+        $q = $esc($group->public_name ?: $group->name) . '-' . $esc($attr->name);
+        $url = $this->context->link->getCategoryLink((int) Configuration::get('PS_HOME_CATEGORY'), null, $this->idLang);
+
+        return $url . (strpos($url, '?') === false ? '?' : '&') . 'q=' . rawurlencode($q);
     }
 
     /* ------------------------------------------------------------------ */
